@@ -15,6 +15,7 @@ Screenshots coming soon...
 ## Built With
 
 Frontend: Typescript, React, React Router, Vite, ChakraUI, Axios, Zustand
+
 Backend: Javascript, NodeJS, Express, Mongoose, MongoDB, Socket.io, JWT, Bcrypt.
 
 ## Lessons Learned
