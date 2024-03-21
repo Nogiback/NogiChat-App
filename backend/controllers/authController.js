@@ -1,11 +1,10 @@
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
 
-// SIGN UP POST ENDPOINT
+// SIGN UP POST
 
 export const signup = [
   body("firstName", "First name must not be empty.")
@@ -45,7 +44,7 @@ export const signup = [
     if (!errors.isEmpty()) {
       res.status(400).json({
         errors: errors.array(),
-        message: "Error: Sign up Failure.",
+        message: "Error: Sign up failure.",
       });
       return;
     }
@@ -82,13 +81,15 @@ export const signup = [
         });
         generateToken(newUser._id, res);
         await newUser.save();
-        res.status(201).json({ message: "New user created successfully." });
+        res
+          .status(201)
+          .json({ newUser, message: "New user created successfully." });
       }
     });
   }),
 ];
 
-// LOGIN POST ENDPOINT
+// LOGIN POST
 
 export const login = [
   body("username", "Username must not be empty.")
@@ -135,7 +136,7 @@ export const login = [
   }),
 ];
 
-// LOGOUT POST ENDPOINT
+// LOGOUT POST
 
 export const logout = (req, res, next) => {
   res.cookie("jwt", "", { maxAge: 0 });
