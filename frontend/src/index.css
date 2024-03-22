@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   background: url(./assets/blurry-gradient-haikei.svg);
   background-color: no-repeat;
   background-size: cover;
   background-position: center;
-}
+} */
