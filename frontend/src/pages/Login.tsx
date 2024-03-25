@@ -5,7 +5,7 @@ export default function Login() {
     <div className='flex flex-col items-center justify-center rounded-lg bg-base-200 p-8 gap-4 shadow-xl'>
       <BotMessageSquare size={32} />
       <h3 className='text-4xl font-bold'>Login</h3>
-      <p>Welcome back to NogiChat</p>
+      <p>Welcome Back to NogiChat!</p>
       <form className='flex flex-col gap-4'>
         <label className='input input-bordered flex items-center gap-2'>
           <svg
@@ -16,7 +16,12 @@ export default function Login() {
           >
             <path d='M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z' />
           </svg>
-          <input type='text' className='grow' placeholder='Username' />
+          <input
+            type='text'
+            className='grow'
+            placeholder='Username'
+            name='username'
+          />
         </label>
         <label className='input input-bordered flex items-center gap-2'>
           <svg
@@ -31,7 +36,12 @@ export default function Login() {
               clipRule='evenodd'
             />
           </svg>
-          <input type='password' className='grow' placeholder='Password' />
+          <input
+            type='password'
+            className='grow'
+            placeholder='Password'
+            name='password'
+          />
         </label>
         <button type='submit' className='btn btn-primary'>
           Login
