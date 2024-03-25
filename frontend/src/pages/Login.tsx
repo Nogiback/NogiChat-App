@@ -1,8 +1,11 @@
+import { BotMessageSquare } from 'lucide-react';
+
 export default function Login() {
   return (
     <div className='flex flex-col items-center justify-center rounded-lg bg-base-200 p-8 gap-4 shadow-xl'>
-      <h3 className='text-4xl font-bold'>Welcome Back</h3>
-      <p>Log in below to start chatting!</p>
+      <BotMessageSquare size={32} />
+      <h3 className='text-4xl font-bold'>Login</h3>
+      <p>Welcome back to NogiChat</p>
       <form className='flex flex-col gap-4'>
         <label className='input input-bordered flex items-center gap-2'>
           <svg

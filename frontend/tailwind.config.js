@@ -7,6 +7,6 @@ export default {
   // eslint-disable-next-line no-undef
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    themes: ['light', 'dark', 'retro', 'cyberpunk', 'valentine', 'aqua'],
+    themes: ['light', 'dark', 'cyberpunk', 'forest', 'aqua'],
   },
 };
