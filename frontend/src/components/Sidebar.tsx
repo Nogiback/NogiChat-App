@@ -4,7 +4,7 @@ import UserList from './UserList';
 
 export default function Sidebar() {
   return (
-    <div className='drawer md:drawer-open'>
+    <div className='drawer md:drawer-open z-10'>
       <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
       <div className='drawer-side h-[600px] overflow-auto'>
         <label

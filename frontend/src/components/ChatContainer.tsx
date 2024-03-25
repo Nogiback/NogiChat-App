@@ -1,31 +1,42 @@
 import React from 'react';
+import { BotMessageSquare } from 'lucide-react';
+import SidebarMenuIcon from './SidebarMenuIcon';
+import Messages from './Messages';
+import MessageInput from './MessageInput';
 
 export default function ChatContainer() {
+  const noChatSelected = false;
+
   return (
-    <div className='min-w-[400px] sm:min-w-[500px] flex flex-col border md:rounded-l-none rounded-lg border-base-300 p-4'>
-      <div className='flex items-center gap-2'>
-        <div className='drawer-content'>
-          <label
-            htmlFor='my-drawer-2'
-            className='btn btn-primary btn-sm md:hidden'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              className='inline-block w-6 h-6 stroke-current'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M4 6h16M4 12h16M4 18h16'
-              ></path>
-            </svg>
-          </label>
-        </div>
-        <span className='label-text'>To: </span>
-        <span className='font-bold'>John Doe</span>
+    <div className='min-w-[400px] sm:min-w-[500px] flex flex-col border md:rounded-l-none rounded-lg border-base-300 p-4 gap-2'>
+      {noChatSelected ? (
+        <>
+          <SidebarMenuIcon />
+          <WelcomeMessage />
+        </>
+      ) : (
+        <>
+          <div className='flex items-center gap-2'>
+            <SidebarMenuIcon />
+            <span className='label-text'>To: </span>
+            <span className='font-bold'>John Doe</span>
+          </div>
+          <div className='divider m-0'></div>
+          <Messages />
+          <MessageInput />
+        </>
+      )}
+    </div>
+  );
+}
+
+function WelcomeMessage() {
+  return (
+    <div className='flex items-center justify-center w-full h-full'>
+      <div className='flex flex-col items-center gap-4 px-4 text-center sm:text-lg md:text-xl font-semibold'>
+        <p>Welcome John Doe!</p>
+        <p>Select a user to start chatting!</p>
+        <BotMessageSquare size={46} />
       </div>
     </div>
   );
