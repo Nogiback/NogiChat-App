@@ -1,4 +1,3 @@
-import React from 'react';
 import UserListItem from './UserListItem';
 
 export default function UserList() {

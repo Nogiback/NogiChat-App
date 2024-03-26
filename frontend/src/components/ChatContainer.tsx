@@ -1,4 +1,3 @@
-import React from 'react';
 import { BotMessageSquare } from 'lucide-react';
 import SidebarMenuIcon from './SidebarMenuIcon';
 import Messages from './Messages';

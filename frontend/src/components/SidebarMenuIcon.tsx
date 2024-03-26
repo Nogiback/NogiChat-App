@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SidebarMenuIcon() {
   return (
     <div className='drawer-content'>

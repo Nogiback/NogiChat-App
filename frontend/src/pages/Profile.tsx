@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Profile() {
   return (
     <div className='p-8 rounded-lg overflow-hidden bg-clip-padding backdrop-blur-lg bg-opacity-0'>

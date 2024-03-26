@@ -2,7 +2,7 @@ import { BotMessageSquare } from 'lucide-react';
 
 export default function Signup() {
   return (
-    <div className='flex flex-col items-center justify-center rounded-lg bg-base-200 p-8 gap-4 shadow-xl'>
+    <div className='flex flex-col items-center justify-center rounded-lg bg-base-200 p-8 gap-4 shadow-xl overflow-hidden bg-clip-padding backdrop-blur-xl bg-opacity-0 border border-base-200'>
       <BotMessageSquare size={32} />
       <h3 className='text-4xl font-bold'>Welcome to NogiChat</h3>
       <p>Sign up below to join the community!</p>
