@@ -34,7 +34,6 @@ export const signup = [
   body("confirmPassword", "Passwords must match.")
     .custom((value, { req }) => value === req.body.password)
     .escape(),
-  body("profilePic").trim().optional(),
 
   asyncHandler(async (req, res, next) => {
     const duplicateUser = await User.findOne({ username: req.body.username });
@@ -75,15 +74,20 @@ export const signup = [
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           gender: req.body.gender,
-          profilePic:
-            req.body.profilePic === "" ? defaultPic : req.body.profilePic,
+          profilePic: defaultPic,
           password: hashedPassword,
         });
         generateToken(newUser._id, res);
         await newUser.save();
-        res
-          .status(201)
-          .json({ newUser, message: "New user created successfully." });
+        res.status(201).json({
+          message: "New user created successfully.",
+          _id: newUser._id,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          email: newUser.email,
+          username: newUser.username,
+          profilePic: newUser.profilePic,
+        });
       }
     });
   }),

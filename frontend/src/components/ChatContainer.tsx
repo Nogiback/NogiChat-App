@@ -4,7 +4,7 @@ import Messages from './Messages';
 import MessageInput from './MessageInput';
 
 export default function ChatContainer() {
-  const noChatSelected = false;
+  const noChatSelected = true;
 
   return (
     <div className='min-w-[400px] sm:min-w-[500px] flex flex-col border md:rounded-l-none rounded-lg border-base-300 p-4 gap-2'>
