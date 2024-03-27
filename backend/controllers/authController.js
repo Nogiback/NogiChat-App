@@ -135,6 +135,7 @@ export const login = [
       firstName: user.firstName,
       lastName: user.lastName,
       profilePic: user.profilePic,
+      email: user.email,
       message: "User successfully logged in.",
     });
   }),

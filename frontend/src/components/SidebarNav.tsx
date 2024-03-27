@@ -1,8 +1,10 @@
 import { BotMessageSquare } from 'lucide-react';
 import useLogout from '../hooks/useLogout';
+import { useAuthContext } from '../context/AuthContext';
 
 export default function SidebarNav() {
   const { logout } = useLogout();
+  const { authUser } = useAuthContext();
 
   return (
     <div className='navbar bg-base-300 rounded-box mb-2'>
@@ -16,13 +18,10 @@ export default function SidebarNav() {
             <div
               tabIndex={0}
               role='button'
-              className='btn btn-ghost btn-circle avatar'
+              className='btn btn-ghost btn-circle avatar online'
             >
               <div className='w-10 rounded-full'>
-                <img
-                  alt='User profile picture'
-                  src='https://ui-avatars.com/api/?name=Peter+Do'
-                />
+                <img alt='User profile picture' src={authUser?.profilePic} />
               </div>
             </div>
             <ul
@@ -33,7 +32,7 @@ export default function SidebarNav() {
                 <a href='/profile'>Profile</a>
               </li>
               <li>
-                <details open>
+                <details>
                   <summary>Theme</summary>
                   <ul>
                     <li>

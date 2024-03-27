@@ -6,16 +6,35 @@ import {
   useContext,
 } from 'react';
 
-type authContextType = {
-  authUser: string;
-  setAuthUser: Dispatch<SetStateAction<string | null>>;
+type AuthUserType = {
+  firstName: string;
+  lastName: string;
+  message: string;
+  email: string;
+  username: string;
+  profilePic: string;
+  _id: string;
 };
 
-export const AuthContext = createContext<authContextType>({
-  authUser: '',
-  setAuthUser: () => '',
+type AuthContextType = {
+  authUser: AuthUserType | null;
+  setAuthUser: Dispatch<SetStateAction<AuthUserType | null>>;
+};
+
+export const AuthContext = createContext<AuthContextType>({
+  authUser: {
+    firstName: '',
+    lastName: '',
+    message: '',
+    email: '',
+    username: '',
+    profilePic: '',
+    _id: '',
+  },
+  setAuthUser: () => {},
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuthContext() {
   return useContext(AuthContext);
 }
@@ -25,7 +44,7 @@ export default function AuthContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [authUser, setAuthUser] = useState(
+  const [authUser, setAuthUser] = useState<AuthUserType | null>(
     JSON.parse(localStorage.getItem('authUser')!) || null,
   );
 
