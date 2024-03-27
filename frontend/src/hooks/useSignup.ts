@@ -1,7 +1,6 @@
-import { AuthContext } from './../context/AuthContext';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useAuthContext } from '../context/AuthContext';
 
 type FormData = {
@@ -28,12 +27,12 @@ export default function useSignup() {
       if (res.status === 201) {
         toast.success('Account successfully created.');
       } else {
-        throw new Error(res.data.error);
+        throw new Error(res.data);
       }
       localStorage.setItem('authUser', JSON.stringify(res.data));
       setAuthUser(res.data);
     } catch (err) {
-      if (err instanceof Error) {
+      if (err instanceof AxiosError) {
         toast.error(err.message);
       }
     } finally {

@@ -1,12 +1,29 @@
 import { BotMessageSquare } from 'lucide-react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import useLogin from '../hooks/useLogin';
 
 export default function Login() {
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const { isLoading, login } = useLogin();
+
+  function handleChange(
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
+  ) {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    await login(formData);
+  }
+
   return (
     <div className='flex flex-col items-center justify-center rounded-lg bg-base-200 p-8 gap-4 shadow-xl overflow-hidden bg-clip-padding backdrop-blur-xl bg-opacity-0 border border-base-200'>
       <BotMessageSquare size={32} />
       <h3 className='text-4xl font-bold'>Login</h3>
       <p>Welcome Back to NogiChat!</p>
-      <form className='flex flex-col gap-4'>
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <label className='input input-bordered flex items-center gap-2'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -21,6 +38,8 @@ export default function Login() {
             className='grow'
             placeholder='Username'
             name='username'
+            value={formData.username}
+            onChange={handleChange}
           />
         </label>
         <label className='input input-bordered flex items-center gap-2'>
@@ -41,10 +60,16 @@ export default function Login() {
             className='grow'
             placeholder='Password'
             name='password'
+            value={formData.password}
+            onChange={handleChange}
           />
         </label>
-        <button type='submit' className='btn btn-primary'>
-          Login
+        <button type='submit' className='btn btn-primary' disabled={isLoading}>
+          {isLoading ? (
+            <span className='loading loading-spinner loading-md'></span>
+          ) : (
+            'Login'
+          )}
         </button>
       </form>
       <div className='flex items-center gap-2'>
