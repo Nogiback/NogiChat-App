@@ -67,7 +67,7 @@ export const signup = [
         res.status(500).json({ err });
         return;
       } else {
-        const defaultPic = `https://avatar.iran.liara.run/username?username=${req.body.firstName}+${req.body.lastName}`;
+        const defaultPic = `https://ui-avatars.com/api/?name=${req.body.firstName}+${req.body.lastName}`;
         const newUser = new User({
           username: req.body.username,
           email: req.body.email,

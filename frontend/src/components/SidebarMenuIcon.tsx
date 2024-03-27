@@ -1,7 +1,10 @@
 export default function SidebarMenuIcon() {
   return (
     <div className='drawer-content'>
-      <label htmlFor='my-drawer-2' className='btn btn-primary btn-sm md:hidden'>
+      <label
+        htmlFor='sidebar-drawer'
+        className='btn btn-primary btn-sm md:hidden'
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

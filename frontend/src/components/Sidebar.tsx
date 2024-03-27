@@ -4,10 +4,10 @@ import UserList from './UserList';
 export default function Sidebar() {
   return (
     <div className='drawer md:drawer-open z-10'>
-      <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
+      <input id='sidebar-drawer' type='checkbox' className='drawer-toggle' />
       <div className='drawer-side h-[610px] overflow-auto'>
         <label
-          htmlFor='my-drawer-2'
+          htmlFor='sidebar-drawer'
           aria-label='close sidebar'
           className='drawer-overlay'
         ></label>

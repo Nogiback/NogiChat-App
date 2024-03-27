@@ -16,7 +16,7 @@ export const sendMessage = [
       });
       return;
     }
-    const { message } = req.body;
+    const message = req.body.message;
     const receiverID = req.params.id;
     const senderID = req.user._id;
 
