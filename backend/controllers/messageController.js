@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import Chat from "../models/Chat.js";
 import Message from "../models/Message.js";
+import { getReceiverSocketID, io } from "../socket/socket.js";
 
 export const sendMessage = [
   body("message", "Message cannot be empty.").trim().isLength({ min: 1 }),
@@ -38,9 +39,14 @@ export const sendMessage = [
       chat.messages.push(newMessage._id);
     }
 
-    // TODO: ADD SOCKET.IO FUNCTIONALITY
-
     await Promise.all([chat.save(), newMessage.save()]);
+
+    const receiverSocketID = getReceiverSocketID(receiverID);
+    if (receiverSocketID) {
+      // io.to(ID).emit() used to send events to specific client
+      io.to(receiverSocketID).emit("newMessage", newMessage);
+    }
+
     res.status(200).json(newMessage);
   }),
 ];

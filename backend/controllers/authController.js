@@ -87,6 +87,7 @@ export const signup = [
           email: newUser.email,
           username: newUser.username,
           profilePic: newUser.profilePic,
+          gender: newUser.gender,
         });
       }
     });
@@ -136,6 +137,7 @@ export const login = [
       lastName: user.lastName,
       profilePic: user.profilePic,
       email: user.email,
+      gender: user.gender,
       message: "User successfully logged in.",
     });
   }),

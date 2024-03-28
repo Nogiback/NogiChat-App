@@ -16,6 +16,7 @@ type Message = {
   message: string;
   createdAt: Date;
   updatedAt: Date;
+  shouldShake: boolean;
 };
 
 type UserState = {

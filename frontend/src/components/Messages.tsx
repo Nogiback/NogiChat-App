@@ -2,9 +2,13 @@ import { useEffect, useRef } from 'react';
 import useGetMessages from '../hooks/useGetMessages';
 import Message from './Message';
 import MessageLoading from './MessageLoading';
+import useSocketMessages from '../hooks/useSocketMessages';
+import useChat from '../zustand/useChat';
 
 export default function Messages() {
   const { isLoading, messages } = useGetMessages();
+  const { selectedUser } = useChat();
+  useSocketMessages();
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   // useEffect to scroll latest message into view
@@ -24,11 +28,18 @@ export default function Messages() {
       )}
       {!isLoading &&
         messages.length > 0 &&
-        messages.map((message) => (
-          <div key={message._id} ref={lastMessageRef}>
-            <Message message={message} />
-          </div>
-        ))}
+        messages.map((message) => {
+          if (
+            message.receiverID === selectedUser?._id ||
+            message.senderID === selectedUser?._id
+          ) {
+            return (
+              <div key={message._id} ref={lastMessageRef}>
+                <Message message={message} />
+              </div>
+            );
+          }
+        })}
     </div>
   );
 }

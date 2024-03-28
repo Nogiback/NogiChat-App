@@ -10,6 +10,7 @@ type MessageProps = {
     receiverID: string;
     senderID: string;
     _id: string;
+    shouldShake: boolean;
   };
 };
 
@@ -23,6 +24,7 @@ export default function Message({ message }: MessageProps) {
     ? authUser.profilePic
     : selectedUser?.profilePic;
   const chatColor = fromAuthUser ? 'chat-bubble-primary' : '';
+  const shakeClass = message.shouldShake ? 'shake' : '';
 
   return (
     <div className={`chat text-sm ${chatBubble}`}>
@@ -31,7 +33,9 @@ export default function Message({ message }: MessageProps) {
           <img alt='user profile picture' src={chatAvatar}></img>
         </div>
       </div>
-      <div className={`chat-bubble p-3 ${chatColor}`}>{message.message}</div>
+      <div className={`chat-bubble p-3 ${chatColor} ${shakeClass}`}>
+        {message.message}
+      </div>
       <div className='chat-footer opacity-50 text-xs py-1'>{timestamp}</div>
     </div>
   );

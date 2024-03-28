@@ -6,9 +6,10 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import connectToMongoDB from "./db/connectToMongoDB.js";
 
-const app = express();
+import connectToMongoDB from "./db/connectToMongoDB.js";
+import { app, server } from "./socket/socket.js";
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -18,7 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`Server is running on port ${PORT}`);
 });

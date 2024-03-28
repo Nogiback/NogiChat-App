@@ -7,7 +7,7 @@ export default function SidebarNav() {
   const { authUser } = useAuthContext();
 
   return (
-    <div className='navbar bg-base-300 rounded-box mb-2'>
+    <div className='navbar bg-base-300 rounded-box mb-2 z-20'>
       <div className='flex-1 px-2 lg:flex-none gap-1'>
         <BotMessageSquare size={28} />
         <a className='text-lg font-bold'>NogiChat</a>

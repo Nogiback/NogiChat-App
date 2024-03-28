@@ -1,14 +1,14 @@
+import { useAuthContext } from '../context/AuthContext';
+
 export default function Profile() {
+  const { authUser } = useAuthContext();
   return (
     <div className='p-8 rounded-lg overflow-hidden bg-clip-padding backdrop-blur-lg bg-opacity-0'>
       <h2 className='text-3xl font-bold'>Profile</h2>
       <div className='flex flex-col items-center justify-center m-10'>
         <div className='avatar'>
           <div className='w-36 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-            <img
-              src='https://ui-avatars.com/api/?name=Peter+Do'
-              alt='user profile picture'
-            />
+            <img src={authUser?.profilePic} alt='user profile picture' />
           </div>
         </div>
       </div>

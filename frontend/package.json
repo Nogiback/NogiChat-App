@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -15,7 +16,6 @@
     "lucide-react": "^0.363.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.22.3",
     "socket.io-client": "^4.7.5",
     "sonner": "^1.4.41",
@@ -25,6 +25,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "@types/socket.io-client": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react-swc": "^3.5.0",

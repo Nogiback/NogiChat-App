@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 type AuthUserType = {
+  gender: string;
   firstName: string;
   lastName: string;
   message: string;
@@ -24,6 +25,7 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>({
   authUser: {
     firstName: '',
+    gender: '',
     lastName: '',
     message: '',
     email: '',

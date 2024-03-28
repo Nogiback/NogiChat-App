@@ -15,7 +15,7 @@ export default function ChatContainer() {
   }, [setSelectedUser]);
 
   return (
-    <div className='min-w-[400px] sm:min-w-[500px] flex flex-col border md:rounded-l-none rounded-lg border-base-300 p-4 gap-2'>
+    <div className='md:min-w-[500px] min-w-[430px] flex flex-col border md:rounded-l-none rounded-lg border-base-300 p-4 gap-2'>
       {!selectedUser ? (
         <>
           <SidebarMenuIcon />

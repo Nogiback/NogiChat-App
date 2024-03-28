@@ -33,6 +33,9 @@ export default {
         cyberpunk: {
           // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
           ...require('daisyui/src/theming/themes')['cyberpunk'],
+          '.chat-bubble': {
+            'font-size': 'small',
+          },
           body: {
             background: 'url(./assets/cyberpunk-bg.svg)',
             'background-color': 'no-repeat',

@@ -1,3 +1,4 @@
+import { useSocketContext } from '../context/SocketContext';
 import useChat from '../zustand/useChat';
 
 type User = {
@@ -17,6 +18,8 @@ type UserListItemProps = {
 export default function UserListItem({ user, lastIndex }: UserListItemProps) {
   const { selectedUser, setSelectedUser } = useChat();
   const isSelected = selectedUser?._id === user._id;
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(user._id);
 
   return (
     <>
@@ -24,7 +27,7 @@ export default function UserListItem({ user, lastIndex }: UserListItemProps) {
         className={`flex gap-2 items-center rounded p-2 cursor-pointer ${isSelected ? 'bg-primary text-primary-content' : ''}`}
         onClick={() => setSelectedUser(user)}
       >
-        <div className='avatar online'>
+        <div className={`avatar ${isOnline ? 'online' : ''}`}>
           <div className='w-10 rounded-full'>
             <img alt='user profile picture' src={user.profilePic} />
           </div>
@@ -32,8 +35,6 @@ export default function UserListItem({ user, lastIndex }: UserListItemProps) {
         <div className='flex flex-col flex-1'>
           <div className='flex gap-3 justify-between'>
             <p className='font-bold'>{`${user.firstName} ${user.lastName}`}</p>
-            {/* TODO: ADD BADGE ICON TO INDICATE NEW MESSAGES RCVED  */}
-            {/* <span className='badge badge-primary badge-md'>1</span> */}
           </div>
         </div>
       </div>
