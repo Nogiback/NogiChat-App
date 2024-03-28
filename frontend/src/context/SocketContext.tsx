@@ -2,16 +2,6 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { useAuthContext } from './AuthContext';
 import io, { Socket } from 'socket.io-client';
 
-type User = {
-  firstName: string;
-  lastName: string;
-  message: string;
-  email: string;
-  username: string;
-  profilePic: string;
-  _id: string;
-};
-
 type SocketContextType = {
   socket: Socket | null;
   onlineUsers: string[];
@@ -22,6 +12,7 @@ export const SocketContext = createContext<SocketContextType>({
   onlineUsers: [],
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSocketContext() {
   return useContext(SocketContext);
 }
@@ -57,6 +48,7 @@ export default function SocketContextProvider({
         setSocket(null);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authUser]);
 
   return (
