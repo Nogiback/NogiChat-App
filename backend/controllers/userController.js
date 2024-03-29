@@ -5,9 +5,10 @@ import generateToken from "../utils/generateToken.js";
 
 export const getUsers = asyncHandler(async (req, res, next) => {
   const currentUser = req.user._id;
-  const allUsers = await User.find({ _id: { $ne: currentUser } }).select(
-    "-password"
-  );
+  const allUsers = await User.find({ _id: { $ne: currentUser } })
+    .select("-password")
+    .sort({ firstName: 1 })
+    .exec();
   if (!allUsers) {
     return res.status(401).json({ message: "Error: No users found." });
   }
