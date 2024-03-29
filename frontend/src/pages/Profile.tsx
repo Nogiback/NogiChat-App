@@ -1,95 +1,134 @@
+import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
+import useUpdatePicture from '../hooks/useUpdatePicture';
 
 export default function Profile() {
+  const [profilePic, setProfilePic] = useState('');
+  const { updatePicture } = useUpdatePicture();
   const { authUser } = useAuthContext();
+
+  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    await updatePicture({ profilePic });
+    (document.getElementById('photoModal') as HTMLDialogElement).close();
+    window.location.reload();
+  }
+
   return (
     <div className='p-8 rounded-lg overflow-hidden bg-clip-padding backdrop-blur-lg bg-opacity-0'>
       <h2 className='text-3xl font-bold'>Profile</h2>
-      <div className='flex flex-col items-center justify-center m-10'>
+      <div className='flex flex-col gap-8 items-center justify-center m-10 md:flex-row'>
         <div className='avatar'>
           <div className='w-36 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
             <img src={authUser?.profilePic} alt='user profile picture' />
           </div>
         </div>
+
+        <button
+          className='btn btn-primary btn-sm'
+          onClick={() =>
+            (
+              document.getElementById('photoModal') as HTMLDialogElement
+            ).showModal()
+          }
+        >
+          Update Picture
+        </button>
       </div>
-      <form className='flex flex-col gap-4'>
-        <input
-          name='profilePic'
-          type='text'
-          className='input input-bordered w-full'
-          placeholder='Profile Image URL'
-        />
-        <div className='flex gap-4'>
-          <input
-            name='firstName'
-            type='text'
-            className='input input-bordered w-full'
-            placeholder='First Name'
-          />
-          <input
-            name='lastName'
-            type='text'
-            className='input input-bordered w-full'
-            placeholder='Last Name'
-          />
+      <div className='items-center mt-8 sm:mt-14'>
+        <div className='flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6'>
+          <div className='w-full'>
+            <label
+              htmlFor='first_name'
+              className='block mb-2 text-sm font-medium text-primary'
+            >
+              First Name
+            </label>
+            <p id='first_name' className='text-lg font-bold'>
+              {authUser?.firstName}
+            </p>
+          </div>
+
+          <div className='w-full'>
+            <label
+              htmlFor='last_name'
+              className='block mb-2 text-sm font-medium text-primary'
+            >
+              Last Name
+            </label>
+            <p id='last_name' className='text-lg font-bold'>
+              {authUser?.lastName}
+            </p>
+          </div>
         </div>
-        <select className='select select-bordered w-full'>
-          <option disabled selected>
+
+        <div className='mb-2 sm:mb-6'>
+          <label
+            htmlFor='username'
+            className='block mb-2 text-sm font-medium text-primary'
+          >
+            Username
+          </label>
+          <p id='username' className='text-lg font-bold'>
+            {authUser?.username}
+          </p>
+        </div>
+        <div className='mb-2 sm:mb-6'>
+          <label
+            htmlFor='email'
+            className='block mb-2 text-sm font-medium text-primary'
+          >
+            Email
+          </label>
+          <p id='email' className='text-lg font-bold'>
+            {authUser?.email}
+          </p>
+        </div>
+        <div className='mb-2 sm:mb-6'>
+          <label
+            htmlFor='gender'
+            className='block mb-2 text-sm font-medium text-primary'
+          >
             Gender
-          </option>
-          <option>Man</option>
-          <option>Woman</option>
-          <option>Transgender</option>
-          <option>Genderqueer</option>
-          <option>Agender</option>
-          <option>Genderless</option>
-          <option>Non-Binary</option>
-          <option>Cis Man</option>
-          <option>Cis Woman</option>
-          <option>Trans Man</option>
-          <option>Trans Woman</option>
-          <option>Third Gender</option>
-          <option>Two-Spirit</option>
-          <option>Bigender</option>
-          <option>Genderfluid</option>
-          <option>Prefer Not To Say</option>
-        </select>
-        <input
-          name='email'
-          type='text'
-          className='input input-bordered w-full'
-          placeholder='Email'
-        />
-        <input
-          name='username'
-          type='text'
-          className='input input-bordered w-full'
-          placeholder='Username'
-        />
-        {
-          // TODO: IMPLEMENT PASSWORD UPDATE FUNCTIONALITY
-          /* <input
-          name='newPassword'
-          type='password'
-          className='input input-bordered w-full'
-          placeholder='New Password'
-        />
-        <input
-          name='confirmNewPassword'
-          type='password'
-          className='input input-bordered w-full'
-          placeholder='Confirm New Password'
-        /> */
-        }
-        <div className='flex gap-3 justify-end'>
-          <button type='submit' className='btn btn-primary'>
-            Save
-          </button>
-          <a className='btn btn-secondary' href='/'>
-            Go Home
-          </a>
+          </label>
+          <p id='gender' className='text-lg font-bold'>
+            {authUser?.gender}
+          </p>
         </div>
-      </form>
+        <a href='/' className='btn btn-secondary w-full'>
+          Back Home
+        </a>
+      </div>
+      <dialog id='photoModal' className='modal'>
+        <div className='modal-box'>
+          <h3 className='font-bold text-xl'>Set Profile Picture</h3>
+          <div className='flex flex-col justify-center items-center w-full py-4'>
+            <label className='form-control w-full max-w-xs'>
+              <div className='label'>
+                <span className='label-text'>Paste Image URL Below</span>
+              </div>
+              <input
+                type='text'
+                className='input input-bordered w-full max-w-xs'
+                value={profilePic}
+                onChange={(e) => setProfilePic(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className='modal-action'>
+            <form method='dialog' className='flex gap-4'>
+              <button
+                type='submit'
+                className='btn btn-primary'
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+              <button className='btn btn-secondary'>Cancel</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

@@ -1,8 +1,8 @@
-import useGetChats from '../hooks/useGetUsers';
+import useGetUsers from '../hooks/useGetUsers';
 import UserListItem from './UserListItem';
 
 export default function UserList() {
-  const { isLoading, users } = useGetChats();
+  const { isLoading, users } = useGetUsers();
   return (
     <div className='flex flex-col overflow-auto py-2 h-[450px]'>
       {users.map((user, index) => (

@@ -9,9 +9,10 @@ type User = {
   lastName: string;
   profilePic: string;
   _id: string;
+  username: string;
 };
 
-export default function useGetChats() {
+export default function useGetUsers() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
 
