@@ -1,7 +1,6 @@
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import User from "../models/User.js";
-import generateToken from "../utils/generateToken.js";
 
 export const getUsers = asyncHandler(async (req, res, next) => {
   const currentUser = req.user._id;
